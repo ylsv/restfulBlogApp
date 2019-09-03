@@ -26,12 +26,12 @@ Blog.create({
 });*/
 
 // RESTFUL ROUTES
-// *Root route
+// *ROOT ROUTE
 app.get('/', function(req, res){
     res.redirect('/blogs');
 });
 
-// 1. Index Route
+// 1. INDEX ROUTE
 app.get('/blogs', function(req, res){
     Blog.find({}, function(err, blogs){
         if(err){
@@ -41,6 +41,26 @@ app.get('/blogs', function(req, res){
         }
     });
 });
+
+// 2. NEW ROUTE
+app.get('/blogs/new', function(req, res){
+    res.render('new');
+});
+
+// 3. CREATE ROUTE
+app.post('/blogs', function(req, res){
+    // create blog
+    Blog.create(req.body.blog, function(err, newBlog){
+        if(err){
+            res.render('new');
+            console.log('error');
+        } else {
+            // redirect to the index page
+            res.redirect('/blogs');
+        }
+    });
+
+})
 
 
 
