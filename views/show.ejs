@@ -9,8 +9,8 @@
                 <span>Created on <%= blog.created.toDateString() %></span>
             </div>
             <div class="ui segment">
-                <p><%= blog.body %></p>
-                <!-- we can also use <%- %> tags here to render the code as well -->
+                <p><%- blog.body %></p>
+                <!-- we use <%- %> tags here to render the code as well -->
             </div>
             <a class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">Edit Post</a>
             <form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST"> <!-- mehod-override to use the delete route-->
