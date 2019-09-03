@@ -59,8 +59,22 @@ app.post('/blogs', function(req, res){
             res.redirect('/blogs');
         }
     });
+});
 
-})
+// 4. SHOW ROUTE
+app.get('/blogs/:id', function(req, res){
+    // look for the blog selected by our link in the DB
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if(err){
+            res.redirect('/blogs');
+            console.log('error!');
+        } else {
+            // render the show page wit detailed info about the foud blog
+            res.render('show', {blog: foundBlog});
+        }
+    });
+});
+
 
 
 
